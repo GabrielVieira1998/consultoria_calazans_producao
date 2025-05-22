@@ -1,0 +1,73 @@
+{% extends "layout.html" %}
+
+{% block title %}Relatórios - Admin{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <h1 class="mb-4">Relatórios de Leads</h1>
+    
+    <!-- Resumo por Fonte -->
+    <div class="card mb-4">
+        <div class="card-header">
+            <h5 class="mb-0">Leads por Fonte</h5>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Fonte</th>
+                            <th>Total de Leads</th>
+                            <th>Últimos 30 dias</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for source in sources %}
+                        <tr>
+                            <td>{{ source.source or 'Direto' }}</td>
+                            <td>{{ source.total }}</td>
+                            <td>{{ source.last_30_days }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Detalhes dos Leads -->
+    <div class="card">
+        <div class="card-header">
+            <h5 class="mb-0">Detalhes dos Leads</h5>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Data</th>
+                            <th>Nome</th>
+                            <th>Email</th>
+                            <th>Fonte</th>
+                            <th>Campanha</th>
+                            <th>Mídia</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for lead in leads %}
+                        <tr>
+                            <td>{{ lead.created_at.strftime('%d/%m/%Y %H:%M') }}</td>
+                            <td>{{ lead.name }}</td>
+                            <td>{{ lead.email }}</td>
+                            <td>{{ lead.source or 'Direto' }}</td>
+                            <td>{{ lead.utm_campaign or '-' }}</td>
+                            <td>{{ lead.utm_medium or '-' }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

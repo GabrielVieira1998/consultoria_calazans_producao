@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+
+{% block title %}Consultoria Calazans - Gerenciamento de Cursos{% endblock %}
+
+{% block content %}
+<section class="py-4">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1>Gerenciamento de Cursos</h1>
+            <div>
+                <a href="{{ url_for('admin.dashboard') }}" class="btn btn-outline-secondary me-2">Voltar ao Painel</a>
+                <a href="{{ url_for('admin.add_course') }}" class="btn btn-primary">Adicionar Novo Curso</a>
+            </div>
+        </div>
+        
+        {% if courses %}
+        <div class="table-responsive admin-table">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Título</th>
+                        <th>Descrição</th>
+                        <th>Data de Criação</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for course in courses %}
+                    <tr>
+                        <td>{{ course.id }}</td>
+                        <td>{{ course.title }}</td>
+                        <td>{{ course.description[:50] }}{% if course.description|length > 50 %}...{% endif %}</td>
+                        <td>{{ course.created_at }}</td>
+                        <td>
+                            <a href="{{ url_for('admin.edit_course', id=course.id) }}" class="btn btn-sm btn-outline-primary">Editar</a>
+                            <a href="{{ url_for('admin.delete_course_route', id=course.id) }}" class="btn btn-sm btn-outline-danger" onclick="return confirm('Tem certeza que deseja excluir este curso?')">Excluir</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="alert alert-info">
+            <p class="mb-0">Nenhum curso cadastrado. <a href="{{ url_for('admin.add_course') }}">Adicionar um curso</a>.</p>
+        </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %} 

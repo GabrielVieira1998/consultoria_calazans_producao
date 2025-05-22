@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+
+{% block title %}Consultoria Calazans - Cursos{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="bg-calazans-light py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+                <h1 class="mb-4">Nossos Treinamentos</h1>
+                <p class="lead">
+                    Descubra treinamentos personalizados criados especialmente para suas necessidades.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Courses Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            {% for course in courses %}
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <img src="{{ course.image }}" class="card-img-top" alt="{{ course.title }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ course.title }}</h5>
+                        <p class="card-text">{{ course.description }}</p>
+                    </div>
+                    <div class="card-footer bg-white border-top-0">
+                        <a href="{{ course.link }}" class="btn btn-primary w-100" target="_blank">
+                            Acessar Treinamento
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Custom Training Section -->
+<section class="py-5 bg-calazans-secondary">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+                <h2 class="mb-4">Precisa de um treino personalizado?</h2>
+                <p class="lead mb-4">
+                    Nossa consultoria oferece planos de treino adaptados especificamente para suas necessidades e limitações.
+                </p>
+                <a href="{{ url_for('main.contact') }}" class="btn btn-primary btn-lg">
+                    Solicitar Consultoria Personalizada
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %} 

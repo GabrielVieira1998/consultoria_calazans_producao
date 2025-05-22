@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block title %}Consultoria Calazans - Painel Administrativo{% endblock %}
+
+{% block content %}
+<section class="py-4">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1>Painel Administrativo</h1>
+            <a href="{{ url_for('auth.logout') }}" class="btn btn-outline-secondary">Sair</a>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">Gerenciamento de Cursos</h5>
+                        <p class="card-text">Adicione, edite e remova cursos disponíveis no site.</p>
+                        <a href="{{ url_for('admin.courses') }}" class="btn btn-primary">Gerenciar Cursos</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">Gerenciamento de Depoimentos</h5>
+                        <p class="card-text">Adicione, edite e remova depoimentos de clientes.</p>
+                        <a href="{{ url_for('admin.testimonials') }}" class="btn btn-primary">Gerenciar Depoimentos</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %} 
